@@ -8,13 +8,14 @@
         // Parse URL parameters
         const params = new URLSearchParams(window.location.search);
         const authCode = params.get('code');
+        const state = params.get('state');
         const error = params.get('error');
 
         // Handle code or error
         window.onload = () => {
             if (authCode) {
                 // Send authCode to app
-                const redirectURL = `karwa://auth?code=${authCode}`;
+                const redirectURL = `karwa://auth?code=${authCode}&state=${state}`;
                 window.location.href = redirectURL;
             } else if (error) {
                 // Send error to app
