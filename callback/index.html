@@ -3,13 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Callback Test</title>
+    <title>Callback Page</title>
+    <script>
+        // Parse URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const authCode = params.get('code');
+        const error = params.get('error');
+
+        // Handle code or error
+        window.onload = () => {
+            if (authCode) {
+                // Send authCode to app
+                const redirectURL = `karwa://auth?code=${authCode}`;
+                window.location.href = redirectURL;
+            } else if (error) {
+                // Send error to app
+                const redirectURL = `karwa://auth?error=${error}`;
+                window.location.href = redirectURL;
+            } else {
+                document.body.innerHTML = "No code or error received.";
+            }
+        };
+    </script>
 </head>
 <body>
-    <h1>Callback Route</h1>
-    <script>
-        // Example JavaScript code
-        console.log("Callback route is working!");
-    </script>
+    <h1>Processing Callback...</h1>
 </body>
 </html>
