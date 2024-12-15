@@ -3,41 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apple Callback</title>
-    <script>
-        // Parse the query parameters from the URL
-        function getQueryParams() {
-            const queryString = window.location.search; // Get the query string (e.g., ?code=123&error=none)
-            const urlParams = new URLSearchParams(queryString); // Parse it
-            return {
-                code: urlParams.get('code'),    // Get the authorization code
-                error: urlParams.get('error')  // Get the error, if any
-            };
-        }
-
-        // Handle the callback logic
-        function handleCallback() {
-            const params = getQueryParams();
-            
-            if (params.code) {
-                console.log("Authorization Code:", params.code);
-                // Redirect to the app with the auth code
-                window.location.href = `karwa://auth?code=${encodeURIComponent(params.code)}`;
-            } else if (params.error) {
-                console.log("Error:", params.error);
-                // Redirect to the app with the error
-                window.location.href = `karwa://auth?error=${encodeURIComponent(params.error)}`;
-            } else {
-                console.log("No authorization code or error received.");
-                document.body.innerHTML = '<h1>Invalid request: No authorization code or error received.</h1>';
-            }
-        }
-
-        // Execute the callback handler on page load
-        window.onload = handleCallback;
-    </script>
+    <title>Callback Test</title>
 </head>
 <body>
-    <h1>Processing...</h1>
+    <h1>Callback Route</h1>
+    <script>
+        // Example JavaScript code
+        console.log("Callback route is working!");
+    </script>
 </body>
 </html>
