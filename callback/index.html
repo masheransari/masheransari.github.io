@@ -11,12 +11,13 @@
         const state = params.get('state');
         const token = params.get('token');
         const error = params.get('error');
+        const accessToken = params.get('access_token');
 
         // Handle code or error
         window.onload = () => {
             if (authCode) {
                 // Send authCode and state back to the app
-                const redirectURL = `karwa://auth?code=${authCode}&state=${state}&token=${token}`;
+                const redirectURL = `karwa://auth?access_token=${accessToken}`;
                 window.location.href = redirectURL;
             } else if (error) {
                 // Send error to the app
