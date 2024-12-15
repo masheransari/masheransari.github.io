@@ -16,6 +16,7 @@
             if (authCode) {
                 // If we have a code, redirect to the app with the code and state
                 const redirectURL = `karwa://auth?code=${authCode}&state=${state}`;
+                alert(redirectURL);
                 window.location.href = redirectURL;
             } else if (error) {
                 // If there's an error, pass it to the app as well
