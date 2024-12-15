@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Callback Page</title>
-    <script>
-        // Parse URL parameters
-        const params = new URLSearchParams(window.location.search);
-        const authCode = params.get('code');
-        const state = params.get('state');
-        const token = params.get('token');
-        const error = params.get('error');
-        const accessToken = params.get('access_token');
-
-        // Handle code or error
-        window.onload = () => {
-            if (authCode) {
-                // Send authCode and state back to the app
-                const redirectURL = `karwa://auth?access_token=${accessToken}`;
-                window.location.href = redirectURL;
-            } else if (error) {
-                // Send error to the app
-                const redirectURL = `karwa://auth?error=${error}`;
-                window.location.href = redirectURL;
-            } else {
-                document.body.innerHTML = "No code or error received.";
-            }
-        };
-    </script>
-</head>
-<body>
-    <h1>Processing Callback...</h1>
-</body>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Callback Page</title>
+      <script>
+         // Parse URL parameters
+          const fragment = window.location.hash.substring(1); // Remove the # from the fragment
+         const params = new URLSearchParams(fragment);
+         
+         // const params = new URLSearchParams(window.location.search);
+         // const authCode = params.get('code');
+         // const state = params.get('state');
+         // const token = params.get('token');
+         const error = params.get('error');
+         const accessToken = params.get('access_token');
+         
+         // Handle code or error
+         window.onload = () => {
+             if (authCode) {
+                 // Send authCode and state back to the app
+                 const redirectURL = `karwa://auth?access_token=${accessToken}`;
+                 window.location.href = redirectURL;
+             } else if (error) {
+                 // Send error to the app
+                 const redirectURL = `karwa://auth?error=${error}`;
+                 window.location.href = redirectURL;
+             } else {
+                 document.body.innerHTML = "No code or error received.";
+             }
+         };
+      </script>
+   </head>
+   <body>
+      <h1>Processing Callback...</h1>
+   </body>
 </html>
