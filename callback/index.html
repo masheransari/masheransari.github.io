@@ -14,11 +14,11 @@
         // Handle code or error
         window.onload = () => {
             if (authCode) {
-                // Send authCode to app
+                // Send authCode and state back to the app
                 const redirectURL = `karwa://auth?code=${authCode}&state=${state}`;
                 window.location.href = redirectURL;
             } else if (error) {
-                // Send error to app
+                // Send error to the app
                 const redirectURL = `karwa://auth?error=${error}`;
                 window.location.href = redirectURL;
             } else {
