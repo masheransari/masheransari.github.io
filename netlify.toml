@@ -1,8 +1,9 @@
 [build]
-  command = "node app.js"
+  command = "npm install"
+  functions = "functions"
   publish = "public"
 
 [[redirects]]
   from = "/*"
-  to = "/"
+  to = "/.netlify/functions/home"
   status = 200
