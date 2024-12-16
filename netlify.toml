@@ -1,8 +1,8 @@
 [build]
-  publish = "/"  # Root directory, because you're serving static files directly from here
+  command = "node app.js"
+  publish = "public"
 
 [[redirects]]
-  from = "/callback"
-  to = "/callback/index.html"
+  from = "/*"
+  to = "/"
   status = 200
-  force = true
