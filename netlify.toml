@@ -1,8 +1,6 @@
 [build]
-  publish = "build"  # Replace "build" with the directory where your built files are located (e.g., "dist")
-  command = "npm run build"  # The build command (for example, "npm run build" for React)
+  publish = "/"  # Root directory, because you're serving static files directly from here
 
-# Define redirects to ensure the /callback route works properly
 [[redirects]]
   from = "/callback"
   to = "/callback/index.html"
