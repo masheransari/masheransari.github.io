@@ -1,0 +1,6 @@
+# Define redirects to ensure the /callback route works properly
+[[redirects]]
+  from = "/callback"
+  to = "/callback/index.html"
+  status = 200
+  force = true
