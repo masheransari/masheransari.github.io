@@ -1,71 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Callback Page</title>
-    <script>
-        // Function to log the data to both browser console and Netlify function
-        const logCallback = async () => {
-            const params = new URLSearchParams(window.location.search);
-            const authCode = params.get('code');
-            const state = params.get('state');
-            const error = params.get('error');
-
-            // Log the parameters in the browser console
-            console.log("Authorization Code: ", authCode);
-            console.log("State: ", state);
-            console.log("Error: ", error);
-
-            // Send parameters to the Netlify serverless function for logging
-            try {
-                const response = await fetch('/.netlify/functions/logCallback?code=' + authCode + '&state=' + state + '&error=' + error);
-                const data = await response.json();
-                console.log('Callback logged to Netlify:', data);
-            } catch (err) {
-                console.error('Error logging callback to Netlify:', err);
-            }
-        };
-
-        // Delay the redirection by 15 seconds
-        const delayRedirect = () => {
-            setTimeout(() => {
-                // Get URL parameters
-                const params = new URLSearchParams(window.location.search);
-                const authCode = params.get('code');
-                const state = params.get('state');
-                const error = params.get('error');
-
-                if (authCode) {
-                    const redirectURL = `karwa://auth?code=${authCode}&state=${state}`;
-                    console.log('Redirecting to:', redirectURL);
-                    window.location.href = redirectURL;  // Redirect to app
-                } else if (error) {
-                    const redirectURL = `karwa://auth?error=${error}`;
-                    console.log('Error redirecting to:', redirectURL);
-                    window.location.href = redirectURL;  // Redirect with error
-                } else {
-                    document.body.innerHTML = "No code or error received.";
-                }
-            }, 15000); // 15-second delay before redirect
-        };
-
-        // Run the logCallback and delayRedirect functions when the page loads
-         window.onload = () => {
-            logCallback();  // Log callback parameters
-            delayRedirect();  // Redirect after delay
-        };
-    </script>
-</head>
-<body>
-    <h1>Processing Callback...</h1>
-    <p>Waiting for 15 seconds before redirecting...</p>
-</body>
-</html>
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -101,4 +35,4 @@
    <body>
       <h1>Processing Callback...</h1>
    </body>
-</html> -->
+</html>
