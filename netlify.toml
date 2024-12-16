@@ -1,8 +1,0 @@
-[build]
-  publish = "/"  # Root directory, because you're serving static files directly from here
-
-[[redirects]]
-  from = "/callback"
-  to = "/callback/index.html"
-  status = 200
-  force = true
