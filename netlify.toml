@@ -1,5 +1,0 @@
-[build]
-  functions = "functions"  # Pointing to the functions folder
-
-[dev]
-  functions = "functions"  # During local development
