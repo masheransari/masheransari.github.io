@@ -1,4 +1,7 @@
-app.post('/callback', (req, res) => {
+const express = require('express');
+const router = express.Router();
+
+router.post('/', (req, res) => {
     res.send(`
         <html lang="en">
         <head>
@@ -30,3 +33,5 @@ app.post('/callback', (req, res) => {
         </html>
     `);
 });
+
+module.exports = router;
