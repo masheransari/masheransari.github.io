@@ -1,35 +1,42 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
 const app = express();
+const serverless = require('serverless-http'); // Import serverless-http
 const userRouter = require('./routes/user');
 const callbackRouter = require('./routes/callback');
 
-// Get route that display a message "hello world"
-app.use('/', (req, res,next) => {
-  console.log('middleware 1');
-  // do something extra to the request 
-  // add a header, check credentials, check permissions, etc
-  next();
-})
+// Middleware for all routes
+app.use('/', (req, res, next) => {
+    console.log('middleware 1');
+    next();
+});
 
-app.use('/user',userRouter);
+// Specific route for /user
+app.use('/user', userRouter);
 
-app.use('/callback',callbackRouter);
+// Specific route for /callback
+app.use('/callback', (req, res, next) => {
+    console.log('middleware for /callback route');
+    next();
+});
+app.use('/callback', callbackRouter);  // This handles /callback route
 
-// Endpoint "/"
+// Root route
 app.get('/', (req, res) => {
     res.send('Hello World!');
-  }
-);
+});
 
-// Fallback route
-app.use('/',(req,res)=>{
-  res.status(501)
-  res.json({
-      message:'This url was not implemented in this API'
-  })
-})
+// Handle all unimplemented routes (404 handler)
+app.use((req, res) => {
+    res.status(404).json({
+        message: 'This URL was not implemented in this API',
+    });
+});
+
+// Use serverless-http to wrap your express app
+module.exports.handler = serverless(app);
+
 const PORT = process.env.PORT || 3000;
-app.listen(PORT,()=>{
-    console.log(`server is running on port ${PORT}`);
-})
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});

@@ -2,8 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 router.post('/', (req, res) => {
-    res.send(`
-        <html lang="en">
+    // Use req.query to get the query parameters
+    const { code, state, error } = req.query;
+
+    const htmlResponse = `
+      <html lang="en">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,8 +33,11 @@ router.post('/', (req, res) => {
         <body>
             <h1>Processing Callback...</h1>
         </body>
-        </html>
-    `);
+      </html>
+    `;
+
+    // Send the HTML response back to the client
+    res.send(htmlResponse);
 });
 
 module.exports = router;
