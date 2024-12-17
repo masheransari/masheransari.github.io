@@ -18,7 +18,8 @@ app.get('/', (req, res) => {
       </head>
       <body>
         <h1>Welcome to the Home Page</h1>
-        <p><a href="/callback">Go to Callback Page</a></p>
+        <form method="post" action="/callback"><p><a href="/callback">Go to Callback Page</a></p>
+          <input type="submit" value="Submit"></form>
       </body>
     </html>
   `);
