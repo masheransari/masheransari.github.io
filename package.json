@@ -1,9 +1,10 @@
 {
   "name": "masheransari11",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -16,9 +17,13 @@
     "url": "https://github.com/masheransari/masheransari.github.io/issues"
   },
   "homepage": "https://github.com/masheransari/masheransari.github.io#readme",
-  "description": "",
   "dependencies": {
     "express": "^4.21.2",
-    "serverless-http": "^3.2.0"
-  }
+    "serverless-http": "^3.2.0",
+    "dotenv": "^8.0.0",
+    "body-parser": "^1.19.0",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {},
+  "description": ""
 }

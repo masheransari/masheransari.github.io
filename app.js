@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 });
 
 // Callback route
-app.get('/callback', (req, res) => {
+app.post('/callback', (req, res) => {
   res.send(`
     <html lang="en">
    <head>
