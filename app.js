@@ -18,17 +18,16 @@ app.get('/', (req, res) => {
       </head>
       <body>
         <h1>Welcome to the Home Page</h1>
-        <p><a href="/callback">Go to Callback Page</a></p>
+        <p><a href="/callback">Go to Other Page</a></p>
       </body>
     </html>
   `);
 });
 
 // Callback route
-app.get('/callback', (req, res) => {
+app.post('/callback', (req, res) => {
   res.send(`
-    <!DOCTYPE html>
-<html lang="en">
+    <html lang="en">
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,10 +40,10 @@ app.get('/callback', (req, res) => {
       
         window.onload = () => {
             if (authCode && state) {
-                const redirectURL = 'karwa://auth?code=${authCode}&state=${state}';
+                const redirectURL = \`karwa://auth?code=${authCode}&state=${state}\`;
                 window.location.href = redirectURL;
             } else if (error) {
-                const redirectURL = 'karwa://auth?error=${error}';
+                const redirectURL = \`karwa://auth?error=${error}\`;
                 window.location.href = redirectURL;
             } else {
                 document.body.innerHTML = "No code or error received.";
@@ -55,7 +54,7 @@ app.get('/callback', (req, res) => {
    <body>
       <h1>Processing Callback...</h1>
    </body>
-</html>`);
+</html>  `);
 });
 
 // Start the server
